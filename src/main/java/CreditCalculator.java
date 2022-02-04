@@ -10,14 +10,16 @@ public class CreditCalculator {
     }
 
     public int monthlyPayment() {
-        return 0;
+        double monthRate = rate * 0.01 / 12;
+        double annuityRate = (monthRate * Math.pow(1 + monthRate, term)) / ((Math.pow(1 + monthRate, term)) - 1);
+        return (int) Math.round(annuityRate * amount);
     }
 
     public int totalAmount() {
-        return 0;
+        return monthlyPayment() * term;
     }
 
     public int overpayment() {
-        return 0;
+        return totalAmount() - amount;
     }
 }
